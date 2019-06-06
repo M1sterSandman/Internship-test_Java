@@ -1,2 +1,2 @@
-# Internship-test_Java
+# Internship test Java
 Internship test, solution on Java 
