@@ -2,50 +2,51 @@ package institution;
 
 import person.Student;
 
-import java.util.ArrayList;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class University{
 
-    private ArrayList<Student> studentList;
-    private ArrayList<Integer> levelList;
     private HashMap<Student, Integer> studentInfoList;
     private String name;
     private int gpa = 0;
 
     public University(String name) {
         this.name = name;
-        studentList = new ArrayList<>();
-        levelList = new ArrayList<>();
         studentInfoList = new HashMap<>();
     }
 
-    public void setStudent(Student student) {
-        this.studentList.add(student);
+    public void setStudent(Student student, Integer level) {
+        this.studentInfoList.put(student, level);
     }
 
     public void addStudent(Student student) {
-        studentList.add(student);
-        levelList.add(student.getLevel());
-        this.gpa = calculateGpa(levelList);
         studentInfoList.put(student, student.getLevel());
+        this.gpa = calculateGpa(studentInfoList);
+
     }
 
-    public ArrayList<Student> getStudentList(){
-        return studentList;
-    }
-    public void setStudentList(ArrayList<Student> studentList){
-        this.studentList=studentList;
+    public HashMap<Student, Integer> getStudentList(){
+        return this.studentInfoList;
     }
 
-    private Integer calculateGpa(ArrayList<Integer> levelList){
+    public void setStudentList(HashMap<Student, Integer> studentInfoList){
+        this.studentInfoList=studentInfoList;
+    }
+
+    private Integer calculateGpa(HashMap<Student, Integer> studentInfoList){
         Integer sum = 0;
-        for(Integer d : levelList)
-            sum += d;
-        return sum / levelList.size();
-
+        for (Map.Entry<Student, Integer> entry : studentInfoList.entrySet()) {
+            for (Integer d : Arrays.asList(entry.getValue())) {
+                sum += d;
+            }
+        }
+        return sum / studentInfoList.size();
     }
+
     public Integer getGpa(){
         return gpa;
     }

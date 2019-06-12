@@ -15,7 +15,6 @@ public class Internship {
     private ArrayList<Student> suitableStudent;
     private Integer gpa;
 
-
     public Internship(String name) {
         this.name = name;
         suitableStudent = new ArrayList<>();
@@ -31,7 +30,7 @@ public class Internship {
 
     public ArrayList<Student> getStudents(HashMap<Student, Integer> studentsInfoList){
         for (Map.Entry<Student, Integer> entry : studentsInfoList.entrySet()) {
-            if(entry.getValue()>gpa){
+            if(entry.getValue() > gpa){
                 suitableStudent.add(entry.getKey());
             }
         }

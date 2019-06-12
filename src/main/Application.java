@@ -5,7 +5,6 @@ import institution.Interlink.Internship;
 import person.Student;
 
 
-
 public class Application {
 
 
@@ -24,7 +23,6 @@ public class Application {
         internship.takeGpa(university.getGpa());
 
         System.out.println("List of internship's students:");
-
 
         System.out.println(internship.getStudents(university.getStudentsInfoList()));
 
