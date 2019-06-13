@@ -24,7 +24,7 @@ public class Application {
 
         System.out.println("List of internship's students:");
 
-        System.out.println(internship.getStudents(university.getStudentsInfoList()));
+        System.out.println(internship.getStudents(university.getStudentsList()));
 
     }
 }

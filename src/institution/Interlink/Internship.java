@@ -28,10 +28,10 @@ public class Internship {
         this.gpa=gpa;
     }
 
-    public ArrayList<Student> getStudents(HashMap<Student, Integer> studentsInfoList){
-        for (Map.Entry<Student, Integer> entry : studentsInfoList.entrySet()) {
-            if(entry.getValue() > gpa){
-                suitableStudent.add(entry.getKey());
+    public ArrayList<Student> getStudents(ArrayList<Student> studentList){
+        for(Student student : studentList){
+            if (student.getLevel()>gpa){
+                suitableStudent.add(student);
             }
         }
         return suitableStudent;

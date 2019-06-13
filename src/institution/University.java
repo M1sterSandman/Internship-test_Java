@@ -3,6 +3,7 @@ package institution;
 import person.Student;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,48 +11,45 @@ import java.util.Map;
 
 public class University{
 
-    private HashMap<Student, Integer> studentInfoList;
+    private ArrayList<Student> studentsList;
+    private ArrayList<Integer> levelList;
     private String name;
     private int gpa = 0;
 
     public University(String name) {
         this.name = name;
-        studentInfoList = new HashMap<>();
+        studentsList = new ArrayList<>();
+        levelList = new ArrayList<>();
     }
 
-    public void setStudent(Student student, Integer level) {
-        this.studentInfoList.put(student, level);
+    public void setStudent(Student student) {
+        this.studentsList.add(student);
     }
 
     public void addStudent(Student student) {
-        studentInfoList.put(student, student.getLevel());
-        this.gpa = calculateGpa(studentInfoList);
-
+        studentsList.add(student);
+        this.levelList.add(student.getLevel());
+        this.gpa = calculateGpa(levelList);
     }
 
-    public HashMap<Student, Integer> getStudentList(){
-        return this.studentInfoList;
+    public ArrayList<Student> getStudentsList(){
+        return this.studentsList;
     }
 
-    public void setStudentList(HashMap<Student, Integer> studentInfoList){
-        this.studentInfoList=studentInfoList;
+    public void setStudentList(ArrayList<Student> studentsList){
+        this.studentsList=studentsList;
     }
 
-    private Integer calculateGpa(HashMap<Student, Integer> studentInfoList){
+    private Integer calculateGpa(ArrayList<Integer> levelList){
         Integer sum = 0;
-        for (Map.Entry<Student, Integer> entry : studentInfoList.entrySet()) {
-            for (Integer d : Arrays.asList(entry.getValue())) {
-                sum += d;
-            }
+        for (Integer d : levelList) {
+            sum += d;
         }
-        return sum / studentInfoList.size();
+        return sum / levelList.size();
     }
 
     public Integer getGpa(){
         return gpa;
-    }
-    public HashMap<Student, Integer> getStudentsInfoList(){
-        return studentInfoList;
     }
 
     @Override
